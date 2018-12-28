@@ -1,0 +1,31 @@
+<ul class="list-group">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-3 ml-auto"><button class="btn btn-info" (click) = "addMode()">Back To List</button></div>
+            </div>
+        </li> 
+        <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-12 text-center"><h2>Add a task</h2></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group mr-auto text-left" *ngIf="this.task">
+                            <div class="row">
+                                <div class="col-md-2 text-right">
+                                    <label for="task"><h3>Task: </h3></label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" name="task" class="form-control" placeholder="enter a task..." [(ngModel)]="task.description"/>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary btn-lg" id="btn-submit" (click)="save()">
+                            Save
+                        </button>
+                    </div>
+                </div>
+        </li>        
+    </ul>
