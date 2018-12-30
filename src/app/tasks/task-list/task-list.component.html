@@ -1,22 +1,26 @@
 <ul class="list-group">
     <li class="list-group-item">
         <div class="row">
-            <div class="col-md-3 ml-auto"><button class="btn btn-primary" (click) = "addMode()">Add a Task</button></div>
+                <div class="col-md-3 ml-auto">
+                <button class="btn btn-primary" (click) = "addMode()" [ngStyle]="{'margin-right': '5px'}">Add a Task</button>
+            </div>
         </div>
     </li>         
     <li class="list-group-item">
         <div class="row text-center">
             <div class="col-md-1"><h4>Id</h4></div>
-            <div class="col-md-8"><h4>Task</h4></div>
+            <div class="col-md-5"><h4>Task</h4></div>
+            <div class="col-md-3"><h4>Due Date</h4></div>
             <div class="col-md-3"><h4>Complete?</h4></div>
         </div>
     </li>
-    <li class="list-group-item" *ngFor="let task of tasks">
-            <div class="row" [style.cursor]="'pointer'">
+    <li [ngClass]="{'list-group-item': task, 'overdue': task.isOverdue, 'complete': task.complete}" *ngFor="let task of tasks">
+            <div class="row">
               <div class="col-md-1">{{ task.id }}</div>
-              <div class="col-md-8">{{ task.description }}</div>
-              <div class="col-md-3" *ngIf = "!task.complete"><button class="btn btn-info btn-sm">Complete</button></div>
-              <div class="col-md-3" *ngIf = "task.complete">Complete</div>
+              <div class="col-md-5">{{ task.description }}</div>
+              <div class="col-md-3">{{ task.dueDate | date:'short' }}</div>
+              <div class="col-md-3" *ngIf = "!task.complete"><button  (click)="completeTask(task.id)" class="btn btn-info btn-sm">Complete</button></div>
+              <div class="col-md-3" *ngIf = "task.complete"><span>Done</span></div>
             </div>
           </li>
     <!-- list items populated by script -->

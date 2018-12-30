@@ -1,16 +1,15 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { TasksService, ITask } from '../tasks.service';
-import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.scss']
 })
 
 export class TasksListComponent implements OnInit {
     tasks: ITask[] = [];
-
     constructor(
         private tasksService: TasksService,
     ) { }
@@ -25,7 +24,14 @@ export class TasksListComponent implements OnInit {
         .subscribe(
           (tasks) => {
             this.tasks = tasks;
+            this.tasks.forEach( (task) =>
+            new Date(task.dueDate).getTime() < new Date().getTime() ? task.isOverdue = true : task.isOverdue = false);
           });
+    }
+
+    completeTask(id) {
+      this.tasksService.completeTask(id).subscribe( (tasks) => console.log(tasks));
+
     }
 
 

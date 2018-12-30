@@ -34,7 +34,15 @@ export class AddTaskComponent implements OnInit {
         id: this.tasks.length + 1,
         description: '',
         complete: false,
+        dueDate: this.getLocalDateTime(),
+        isOverdue: false,
         };
+    }
+
+    getLocalDateTime(): string {
+        const dueDate = new Date();
+        dueDate.setHours(dueDate.getHours() - (dueDate.getTimezoneOffset() / 60));
+        return dueDate.toISOString().slice(0, 16);
     }
 
     save(): void {
