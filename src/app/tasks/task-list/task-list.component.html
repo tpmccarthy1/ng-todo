@@ -19,7 +19,7 @@
               <div class="col-md-1">{{ task.id }}</div>
               <div class="col-md-5">{{ task.description }}</div>
               <div class="col-md-3">{{ task.dueDate | date:'short' }}</div>
-              <div class="col-md-3" *ngIf = "!task.complete"><button  (click)="completeTask(task.id)" class="btn btn-info btn-sm">Complete</button></div>
+              <div class="col-md-3" *ngIf = "!task.complete"><button  (click)="completeTask(task)" class="btn btn-info btn-sm">Complete</button></div>
               <div class="col-md-3" *ngIf = "task.complete"><span>Done</span></div>
             </div>
           </li>

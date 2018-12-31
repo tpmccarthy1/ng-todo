@@ -31,7 +31,7 @@ export class AddTaskComponent implements OnInit {
         });
 
     this.task = {
-        id: this.tasks.length + 1,
+        id: 0,
         description: '',
         complete: false,
         dueDate: this.getLocalDateTime(),

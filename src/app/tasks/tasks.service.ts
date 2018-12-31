@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 // tslint:disable-next-line:import-blacklist
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 export interface ITask {
   id: number;
@@ -17,20 +18,19 @@ export class TasksService {
     private tasks: ITask[] = [];
 
     constructor(
+        private http: HttpClient,
     ) { }
 
     getTasks(): Observable<ITask[]> {
-        return of(this.tasks);
+        return this.http.get<ITask[]>('http://localhost:3000/tasks');
     }
 
     save(task: ITask): Observable<ITask> {
-        this.tasks.push(task);
-        return of(task);
+        return this.http.post<ITask>('http://localhost:3000/tasks', task);
     }
 
-    completeTask(taskId: number): Observable<ITask[]> {
-        this.tasks.forEach( (task) => taskId === task.id ? (task.complete = true) : task.complete);
-        return of(this.tasks);
+    completeTask(task: ITask): Observable<ITask> {
+        return this.http.put<ITask>('http://localhost:3000/tasks', task);
     }
 
 

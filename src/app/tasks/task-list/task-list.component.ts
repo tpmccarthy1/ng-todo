@@ -29,9 +29,9 @@ export class TasksListComponent implements OnInit {
           });
     }
 
-    completeTask(id) {
-      this.tasksService.completeTask(id).subscribe( (tasks) => console.log(tasks));
-
+    completeTask(task) {
+      this.tasksService.completeTask(task).subscribe();
+      this.tasksService.getTasks().subscribe((tasks) => this.tasks = tasks);
     }
 
 
